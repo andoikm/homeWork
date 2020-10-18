@@ -1,28 +1,40 @@
+const ASC = 'asc';
+const DESC = 'desc';
 
-let swappElements = (arr, i) => {
-	let tmp = arr[i];
+const getSortType = (arr, i, sort) => {
+	const flag =  arr[i] - arr[i + 1];
 	
-	arr[i] = arr[i + 1];
-	arr[i + 1] = tmp;
+	return sort === ASC
+		? flag < 0
+		: flag > 0;
 }
 
-let bubbleSort = arr => {
-    let len = arr.length;
-    let swapped;
+
+const swappElements = (arr, i) => {
+	const temp = arr[i];
 	
-    do {
-        swapped = false;
-        for (let i = 0; i < len; ++i) {
-            if (arr[i] > arr[i + 1]) {
-                swappElements(arr, i);
-                swapped = true;
-            }
-        }
-    } while (swapped);
+	arr[i] = arr[i + 1];
+	arr[i + 1] = temp;
+}
 
-    return arr;
-};
+const bubbleSort = (arr, sort = DESC) => {
+	const len = arr.length;
+	let swapped;
+	
+	do {
+		swapped = false;
+		for (let i = 0; i < len; ++i) {
+			if (getSortType(arr, i, sort)) {
+				swappElements(arr, i);
+				swapped = true;
+			}
+		}
+	} while (swapped);
+	
+	return arr;
+}
 
-const arr = [2,5,9,1,4,5,6,7,3,8,10];
-console.log(arr);
-console.log(bubbleSort(arr));
+const arr = [1,3,2,6,5,4,8,9,15];
+
+console.log(bubbleSort(arr, ASC));
+
