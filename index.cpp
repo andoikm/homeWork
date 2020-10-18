@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 bool isUnique(string str, int bitSetCount) {
     long tbl = 0;
@@ -23,6 +24,7 @@ bool isUnique(string str, int bitSetCount) {
 	
 	return true;
 }
+
 int main()
 {
     if(isUnique("lksa*/,.", 2)){
